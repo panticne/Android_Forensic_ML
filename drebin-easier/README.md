@@ -21,4 +21,10 @@ Voici la liste des différents paramètres nécessaires :
 "--testsize", type= float, default= 0.2, help= "Size of the test set when split by Scikit Learn's Train Test Split module")
 ```
 
+Exemple de commande :
+
+```
+python start.py --maldir /home/osboxes/Desktop/APK/MAL/ --maldir_dest /home/osboxes/Desktop/MAL_Extract/ --gooddir /home/osboxes/Desktop/APK/ --gooddir_dest /home/osboxes/Desktop/BEN_Extract/ --type 5
+```
+
 TODO : Laisser le choix ou non de créer les données car si pas de CSV -> les crée automatiquement
