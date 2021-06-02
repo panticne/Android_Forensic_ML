@@ -26,3 +26,14 @@ sudo apt-get install -y apktool
 "--testsize", help="Size of the test set when split (value between ]0;1[).")
 "--HPO", help="Apply a Hyper-parameters optimization. 2 = Random Search, 1 = GridSearch and 0 = None")
 ```
+# Exemples de commande
+
+Pour créer les csv :
+```
+python start.py --maldir /home/osboxes/Desktop/APK/MAL/ --maldir_dest /home/osboxes/Desktop/MAL_Extract/ --gooddir /home/osboxes/Desktop/APK/ --gooddir_dest /home/osboxes/Desktop/BEN_Extract/ --HPO 2
+```
+
+Pour lancer les modèles :
+```
+python start.py --HPO 1
+```
