@@ -20,7 +20,7 @@ def eraser(filename):
     :param filename: filename of the APK.
     :return: None.
     """
-    os.system("find " + "Output" + filename + " -type f ! -name 'AndroidManifest.xml' -delete")
+    os.system("find Output{} -type f ! -name 'AndroidManifest.xml' -delete".format(filename))
 
 
 def permissionParsing(package, writer, MORB):
@@ -94,10 +94,10 @@ def separate(filename, dataDir, dataDirDest, MORB):
         link.append(join(dataDir, e))
     # For all files, we use apktool to extract the apk to dataDirDest
     for filename in fileList:
-        os.system("apktool" + " " + "d -f " + link[i] + " -o " + dataDirDest + "Output" + filename)
+        os.system("apktool d -f {} -o {}Output{}".format(link[i], dataDirDest, filename))
         i += 1
         eraser(filename)
-        permissionParsing(dataDirDest + "Output" + filename, writer, MORB)
+        permissionParsing(dataDirDest + "Output{}".format(filename), writer, MORB)
 
 def parse(malDir,malDirDest, goodDir, goodDirDest):
     """
@@ -122,5 +122,4 @@ def parse(malDir,malDirDest, goodDir, goodDirDest):
     # Close Pool and let all the processes complete
     pool.close()
     pool.join()
-
 
