@@ -8,8 +8,12 @@ from naivesBayes import naivesBayes
 from decisionTree import decisionTree
 from SVC import SVC
 from kNeighborsClassifier import kNeighborsClassifier
+from SVCTune import SVCGS
+from kNeighborsClassifierTune import kNeighborsClassifierGS
+from randomForestClassifierTune import randomForestClassifierGS
+from kNeighborsClassifierRandom import kNeighborsClassifierRS
 import os.path
-import psutil, argparse
+import argparse
 
 def main(args, FeatureOption):
     '''
@@ -25,26 +29,30 @@ def main(args, FeatureOption):
     testSize = args.testsize
     goodCsvFile = "binaryApps_BEN.csv"
     malwareCsvFile = "binaryApps_MAL.csv"
-
+    GS = args.gs
     if os.path.isfile(goodCsvFile) and os.path.isfile(malwareCsvFile):
-        print("File exist")
-        #LinearRegression
-        if type_model == 0:
+        if GS == 0:
             linearRegression(testSize)
-        #RandomForestClassifier
-        if type_model == 1:
+
             randomForestClassifier(testSize)
-        #Naives Bayes
-        if type_model == 2:
+
             naivesBayes(testSize)
-        #Decision tree
-        if type_model == 3:
+
             decisionTree(testSize)
-        if type_model == 4:
+
             kNeighborsClassifier(testSize)
-        #SVC
-        if type_model == 5:
+
             SVC(testSize)
+        if GS == 1:
+
+            #ANNGS(testSize)
+            SVCGS(testSize)
+            kNeighborsClassifierGS(testSize)
+            randomForestClassifierGS(testSize)
+
+        if GS == 2:
+            kNeighborsClassifierRS(testSize)
+
 
     else:
         parse(malDir, malDirDest, goodDir, goodDirDest)
@@ -67,6 +75,8 @@ def menu():
                       help= "Absolute path to directory where to store the benign output")
     args.add_argument("--testsize", type= float, default= 0.2,
                       help= "Size of the test set when split by Scikit Learn's Train Test Split module")
+    args.add_argument("--gs", type= int, default= 0,
+                      help= "1 If you want to use tuning with GridSearch 0 instead")
 
     return args.parse_args()
 

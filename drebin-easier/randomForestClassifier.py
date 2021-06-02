@@ -4,7 +4,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
+from sklearn.model_selection import GridSearchCV
 import matplotlib.pyplot as plt
+
 
 def randomForestClassifier(size_split):
     df = pd.read_csv('binaryApps_BEN.csv', sep=',')
@@ -16,6 +18,7 @@ def randomForestClassifier(size_split):
     output_integer_encoded = label_encoder.fit_transform(df['malware'])
     X_train, X_test, y_train, y_test = train_test_split(df.iloc[:, 1:-1], output_integer_encoded,
                                                         test_size=size_split, random_state=42)
+
     RFC_clf = RandomForestClassifier()
     RFC_clf = RFC_clf.fit(X_train, y_train)
 
@@ -36,3 +39,4 @@ def randomForestClassifier(size_split):
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.show()
+

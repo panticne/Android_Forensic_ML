@@ -16,8 +16,7 @@ def linearRegression(size_split):
 
     label_encoder = LabelEncoder()
     output_integer_encoded = label_encoder.fit_transform(df['malware'])
-    print(df)
-    print(output_integer_encoded)
+
     X_train, X_test, y_train, y_test = train_test_split(df.iloc[:, 1:-1], output_integer_encoded,
                                                         test_size=size_split, random_state=42)
 
