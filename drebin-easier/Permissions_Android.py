@@ -1,12 +1,10 @@
-#Extracted from https://github.com/androguard/androguard/blob/master/androguard/core/api_specific_resources/aosp_permissions/aosp_permissions_api22.py
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-#################################################
-### Only usted to a research approach
-#################################################
-#################################################
-### Extracted from platform version: 5.1.1
-#################################################
+"""
+	This file is used to store the permission that we want to match
+    This file is based on : https://github.com/urcuqui/WhiteHat/tree/master/Research/Android/scripts
+	Extracted from https://github.com/androguard/androguard/blob/master/androguard/core/api_specific_resources/aosp_permissions/aosp_permissions_api22.py
+"""
+
+
 AOSP_PERMISSIONS = {
     'android.permission.REMOTE_AUDIO_PLAYBACK': {
         'permissionGroup': 'android.permission-group.SYSTEM_TOOLS',
