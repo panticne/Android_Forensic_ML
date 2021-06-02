@@ -1,24 +1,24 @@
 """
-This file is the implementation of GridSearch with SVC model
+This file is the implementation of Random Search with SVC model
 Source :    https://github.com/LiYangHart/Hyperparameter-Optimization-of-Machine-Learning-Algorithms
-            https://github.com/sontung/drebin-malwares
+			https://github.com/sontung/drebin-malwares
 """
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.model_selection import GridSearchCV
 from sklearn import svm
+from scipy.stats import randint as sp_randint
+from sklearn.model_selection import RandomizedSearchCV
 
 
-def SVCGS(size_split):
+def SVCRS(size_split):
     """
-    Method used to call the SVC model with Grid Search
+    Method used to call the SVC model with Random Search
     :param size_split: Size of the test dataset
     :return: None
     """
-
     # Read both files and merge them
     df = pd.read_csv('binaryApps_BEN.csv', sep=',')
     df2 = pd.read_csv('binaryApps_MAL.csv', sep=',')
@@ -33,7 +33,7 @@ def SVCGS(size_split):
     # https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
     rf_params = {
         'gamma': [1e-3, 1e-2, 1 / 8],
-        'C': [1, 10, 100],
+        'C': sp_randint(1, 50),
         "kernel": ['linear', 'poly', 'rbf', 'sigmoid']
     }
 
@@ -42,25 +42,24 @@ def SVCGS(size_split):
     # https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter
     scores = ["precision", "accuracy", "f1"]
 
-
+    # We calculate the scoring
     for score in scores:
         print("# Tuning hyper-parameters for %s" % score)
         print("")
 
-        # We create the GridSearch and train the model
-        clf = GridSearchCV(svm.SVC(), rf_params, cv=5, scoring=score, n_jobs=2)
-        clf.fit(X_train, y_train)
+        Random = RandomizedSearchCV(svm.SVC(kernel="rbf"), rf_params, cv=5, scoring=score, n_jobs=2)
+        Random.fit(X_train, y_train)
 
         print("Best parameters set found on development set:")
         print("")
         # By default refit is True, then when you call one of those attribute, the refit is made with the best
         # parameters.
-        print(clf.best_estimator_)
-        print(clf.best_params_)
+        print(Random.best_estimator_)
+        print(Random.best_params_)
         print("")
         print("Grid scores on development set:")
         print("")
-        print(clf.best_score_)
+        print(Random.best_score_)
         print("")
 
         print("Detailed classification report:")
@@ -69,7 +68,7 @@ def SVCGS(size_split):
         print("")
 
         # We test now the model and print classification report and confusion matrix
-        y_true, y_pred = y_test, clf.predict(X_test)
+        y_true, y_pred = y_test, Random.predict(X_test)
         print(classification_report(y_true, y_pred))
         SVC_cm = confusion_matrix(y_test, y_pred)
 
