@@ -5,6 +5,17 @@ Cet outil a été développé afin de :
 - Stocker les résultats précédents dans des fichiers .cls
 - Utiliser les .cls afin d'entraîner plusieurs modèles et afficher leurs résultats (Sans optimisation des hypers paramètres, avec Grid Search CV des hypers paramètres et Random Search CV des hypers paramètres
 
+# Environnement 
+
+Le projet a été réalisé sur une VM Ubuntu (https://www.osboxes.org/ubuntu/)
+
+Le code a été développé sur l’IDE PyCharm Community (https://www.jetbrains.com/fr-fr/pycharm/download/#section=windows)
+
+Version de python : 2.7.17
+
+Version de pip : 9.0.1
+
+
 # Installation
 
 Il vous faudra ensuite lancer la commande suivante :
@@ -12,7 +23,7 @@ Il vous faudra ensuite lancer la commande suivante :
 pip install -r requirements.txt
 ```
 
-Il vous faudra également pouvoir lancer apktool, pour l'installer :
+Afin de pouvoir parser des APK il vous faudra également pouvoir lancer apktool, pour l'installer :
 ```
 sudo apt-get install -y apktool
 ```
