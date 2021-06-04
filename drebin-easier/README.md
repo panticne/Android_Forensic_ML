@@ -5,6 +5,13 @@ Cet outil a été développé afin de :
 - Stocker les résultats précédents dans des fichiers .cls
 - Utiliser les .cls afin d'entraîner plusieurs modèles et afficher leurs résultats (Sans optimisation des hypers paramètres, avec Grid Search CV des hypers paramètres et Random Search CV des hypers paramètres
 
+# Datasets
+Le dossier 1000B1000M contient les datasets de 1000 malwares et 1000 goodwares.
+
+Le dossier 100B100M contient les datasets de 100 malwares et 100 goodwares.
+
+binarryApps_BEN.csv et binaryApps_MAL.csv présent dans la racine du projet sont les dataset de 100B100M 
+
 # Environnement 
 
 Le projet a été réalisé sur une VM Ubuntu (https://www.osboxes.org/ubuntu/)
