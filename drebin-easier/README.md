@@ -10,7 +10,7 @@ Le dossier 1000B1000M contient les datasets de 1000 malwares et 1000 goodwares.
 
 Le dossier 100B100M contient les datasets de 100 malwares et 100 goodwares.
 
-binarryApps_BEN.csv et binaryApps_MAL.csv présent dans la racine du projet sont les dataset de 100B100M 
+binarryApps_BEN.csv et binaryApps_MAL.csv présent dans ce répértoir sont les dataset de 100B100M 
 
 # Environnement 
 
